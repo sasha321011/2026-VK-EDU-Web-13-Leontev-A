@@ -1,6 +1,9 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
@@ -9,7 +12,7 @@ body {
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    background: rgb(249, 249, 83);
+    background: rgb(243, 243, 182);
 }
 
 .logo a {
@@ -72,7 +75,6 @@ body {
     padding: 0 20px;
 }
 
-
 .row {
     display: flex;
     gap: 30px;
@@ -84,12 +86,8 @@ body {
     min-width: 0;
 }
 
-.content-question {
+.main {
     flex: 1;
-    min-width: 0;
-    border: 1px solid #000;
-    margin-bottom: 20px;
-    border-radius: 5px;
 }
 
 .sidebar {
@@ -112,7 +110,6 @@ body {
     padding-bottom: 8px;
     border-bottom: 1px solid #eee;
 }
-
 
 .tags {
     display: flex;
