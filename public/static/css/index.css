@@ -1,0 +1,155 @@
+.content-question {
+    display: flex;
+    gap: 15px;
+    padding: 16px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.content-question-side {
+    width: 60px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-question-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.content-question-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.content-question-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.content-question-body p {
+    margin: 0;
+    color: #555;
+}
+
+.question-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.question-title:hover {
+    text-decoration: underline;
+}
+
+.content-question-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+
+.answers-count {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.answers-count:hover {
+    text-decoration: underline;
+}
+
+.question-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.question-time {
+    margin-left: auto;
+    color: #999;
+}
+
+.pagination {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 14px;
+    background: #fff;
+}
+
+.page-link:hover {
+    background: #f0f0f0;
+}
+
+.page-link.active {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+.page-link.disabled {
+    color: #aaa;
+    pointer-events: none;
+    background: #f8f8f8;
+}
+
+.vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.vote-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.vote-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+}
+
+.vote-count {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    min-width: 24px;
+    text-align: center;
+}
