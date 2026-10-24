@@ -119,11 +119,24 @@ textarea.form-input {
     object-fit: cover;
 }
 
+.user-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #333;
+}
+
 .user-block {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .profile-avatar {
     width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
 }
