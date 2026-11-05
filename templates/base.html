@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMe</title>
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'index' %}">AskMe</a>
+        </div>
+
+        <div class="search">
+            <form class="search-form">
+                <input type="search" class="search-input" placeholder="Поиск...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+        <div class="user-block">
+            <a href="{% url 'login' %}">Войти</a>
+            <a href="{% url 'signup' %}">Регистрация</a>
+        </div>
+        
+        <!--
+        <div class="user-block">
+            <a href="{% url 'ask' %}" class="btn-ask">Задать вопрос</a>
+            <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="profile-avatar">
+            <a href="{% url 'profile' %}">settings</a>
+            <a href="{% url 'index' %}">log out</a>
+        </div>
+        -->
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="row">
+
+                <div class="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h2 class="widget-title">Популярные теги</h2>
+                        <div class="tags">
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">html</a>
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">javascript</a>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h2 class="widget-title">Лучшие пользователи</h2>
+                        <ul class="members">
+                            <li class="member">
+                                <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="member-avatar">
+                                <a href="{% url 'profile' %}">Иван Иванов</a>
+                            </li>
+                            <li class="member">
+                                <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="member-avatar">
+                                <a href="{% url 'profile' %}">Мария Петрова</a>
+                            </li>
+                            <li class="member">
+                                <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="member-avatar">
+                                <a href="{% url 'profile' %}">Петр Сидоров</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 AskMe. Учебный проект VK Education.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
