@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'questions/css/question.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="question-card">
+        <div class="vote-col">
+            <button type="button" class="vote-btn vote-up active">▲</button>
+            <span class="vote-count vote-count-up">{{ question.rating }}</span>
+            <button type="button" class="vote-btn vote-down">▼</button>
+        </div>
+
+        <div class="question-main">
+            <h1 class="question-title">{{ question.title }}</h1>
+            <p class="question-text">{{ question.text }}</p>
+
+            <div class="question-meta">
+                <div class="question-tags">
+                    {% for tag in question.tags %}
+                        <a href="{% url 'tag' tag %}" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                <div class="question-author">
+                    <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="author-avatar">
+                    <span>Иван Иванов</span>
+                    <span class="question-time">2 часа назад</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="answers-title">Ответы ({{ answers|length }})</h2>
+
+    {% for answer in answers %}
+        <div class="answer-card {% if answer.is_correct %}answer-correct{% endif %}">
+            <div class="vote-col">
+                <button type="button" class="vote-btn vote-up">▲</button>
+                <span class="vote-count">{{ answer.rating }}</span>
+                <button type="button" class="vote-btn vote-down">▼</button>
+                
+                {% if answer.is_correct %}
+                    <button type="button" class="correct-btn active">✓</button>
+                    <span class="correct-label">Правильный</span>
+                {% else %}
+                    <button type="button" class="correct-btn">✓</button>
+                {% endif %}
+            </div>
+
+            <div class="answer-main">
+                <p class="answer-text">{{ answer.text }}</p>
+                <div class="answer-meta">
+                    <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="author-avatar">
+                    <span>Мария Петрова</span>
+                    <span class="question-time">1 час назад</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="answer-form-card">
+        <h3 class="answer-form-title">Ваш ответ</h3>
+        <form>
+            <div class="form-group">
+                <textarea class="text-input" rows="5" placeholder="Введите ответ..." maxlength="2000"></textarea>
+                <div class="form-text">Максимум 2000 символов.</div>
+            </div>
+            <button type="submit" class="btn-submit">Отправить</button>
+        </form>
+    </div>
+{% endblock %}

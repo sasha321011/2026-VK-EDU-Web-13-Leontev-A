@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'questions/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1 class="page-title">Новые вопросы</h1>
+        <a href="{% url 'hot' %}" class="btn-switch">Горячие вопросы →</a>
+    </div>
+
+    {% for question in questions %}
+        <div class="content-question">
+            <div class="content-question-side">
+                <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="content-question-avatar">
+                <div class="vote">
+                    <button type="button" class="vote-btn vote-up">▲</button>
+                    <span class="vote-count">{{ question.rating }}</span>
+                    <button type="button" class="vote-btn vote-down">▼</button>
+                </div>
+            </div>
+            <div class="content-question-right">
+                <div class="content-question-body">
+                    <a href="{% url 'question' question.id %}" class="question-title">{{ question.title }}</a>
+                    <p>{{ question.text }}</p>
+                </div>
+                <div class="content-question-footer">
+                    <a href="{% url 'question' question.id %}" class="answers-count">Ответы: {{ question.answers_count }}</a>
+                    
+                    <div class="question-tags">
+                        {% for tag in question.tags %}
+                            <a href="{% url 'tag' tag %}" class="tag">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                    <span class="question-time">2 часа назад</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% include 'questions/includes/pagination.html' %}
+
+{% endblock %}
