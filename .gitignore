@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+*.log
+*.sqlite3
+media/
+static/
+db.sqlite3
+venv/
+.venv/
+.env
+
+.public/
