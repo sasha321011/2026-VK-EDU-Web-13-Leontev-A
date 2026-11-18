@@ -30,8 +30,8 @@
                     <a href="{% url 'question' question.id %}" class="answers-count">Ответы: {{ question.answers_count }}</a>
                     
                     <div class="question-tags">
-                        {% for tag in question.tags %}
-                            <a href="{% url 'tag' tag %}" class="tag">{{ tag }}</a>
+                        {% for tag in question.tags.all %}
+                            <a href="{% url 'tag' tag.name %}" class="tag">{{ tag.name }}</a>
                         {% endfor %}
                     </div>
                     <span class="question-time">2 часа назад</span>
