@@ -5,11 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AskMe</title>
+    <title>{% block title %}AskMe{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
-
 <body>
 
     <header class="header">
@@ -25,18 +24,25 @@
         </div>
 
         <div class="user-block">
-            <a href="{% url 'login' %}">Войти</a>
-            <a href="{% url 'signup' %}">Регистрация</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'ask' %}" class="btn-ask">Задать вопрос</a>
+                <a href="{% url 'profile' %}" class="user-link">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="avatar" class="profile-avatar">
+                    {% else %}
+                        <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="profile-avatar">
+                    {% endif %}
+                    {{ user.username }}
+                </a>
+                <form method="post" action="{% url 'logout' %}" style="display:inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-logout">Выйти</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'signup' %}">Регистрация</a>
+            {% endif %}
         </div>
-        
-        <!--
-        <div class="user-block">
-            <a href="{% url 'ask' %}" class="btn-ask">Задать вопрос</a>
-            <img src="{% static 'core/img/avatar.png' %}" alt="avatar" class="profile-avatar">
-            <a href="{% url 'profile' %}">settings</a>
-            <a href="{% url 'index' %}">log out</a>
-        </div>
-        -->
     </header>
 
     <main class="main">
@@ -44,8 +50,7 @@
             <div class="row">
 
                 <div class="content">
-                    {% block content %}
-                    {% endblock %}
+                    {% block content %}{% endblock %}
                 </div>
 
                 <aside class="sidebar">
@@ -87,6 +92,8 @@
         </div>
     </footer>
 
+    <script src="{% static 'core/js/likes.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 
 </html>

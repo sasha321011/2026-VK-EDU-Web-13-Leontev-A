@@ -17,14 +17,32 @@ class Tag(models.Model):
 
 class QuestionManager(models.Manager):
     def new(self):
-        return (self.select_related('author').prefetch_related('tags').annotate(answers_count=Count('answers')).order_by('-created_at'))
+        return (self.select_related('author')
+                    .prefetch_related('tags')
+                    .annotate(
+                        answers_count=Count('answers'),
+                        rating=Sum('likes__value'),   # ← добавить
+                    )
+                    .order_by('-created_at'))
 
     def hot(self):
-        return (self.select_related('author').prefetch_related('tags').annotate(rating=Sum('likes__value'), answers_count=Count('answers')).order_by('-rating', '-created_at'))
+        return (self.select_related('author')
+                    .prefetch_related('tags')
+                    .annotate(
+                        answers_count=Count('answers'),
+                        rating=Sum('likes__value'),
+                    )
+                    .order_by('-rating', '-created_at'))
 
     def by_tag(self, tag_name):
-        return (self.select_related('author').prefetch_related('tags').annotate(answers_count=Count('answers')).filter(tags__name=tag_name).order_by('-created_at'))
-
+        return (self.select_related('author')
+                    .prefetch_related('tags')
+                    .annotate(
+                        answers_count=Count('answers'),
+                        rating=Sum('likes__value'),
+                    )
+                    .filter(tags__name=tag_name)
+                    .order_by('-created_at'))
 
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')

@@ -6,32 +6,60 @@
 {% endblock %}
 
 {% block content %}
-    <div class="form-wrapper">
-        <h1 class="form-title">Регистрация</h1>
+<div class="form-wrapper">
+    <h1 class="form-title">Регистрация</h1>
 
-        <form class="form-card">
-            <div class="form-group">
-                <label for="signup-login">Логин</label>
-                <input type="text" id="signup-login" class="form-input" placeholder="Ваш логин">
-            </div>
+    {% if form.non_field_errors %}
+        <div class="form-alert">
+            {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+        </div>
+    {% endif %}
 
-            <div class="form-group has-error">
-                <label for="signup-email">Email</label>
-                <input type="email" id="signup-email" class="form-input" placeholder="you@example.com" value="bad-email">
-                <div class="field-error">Вы ввели невалидный email.</div>
-            </div>
+    <form class="form-card" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            <div class="form-group">
-                <label for="signup-password">Пароль</label>
-                <input type="password" id="signup-password" class="form-input" placeholder="Введите пароль">
-                <div class="form-text">Минимум 8 символов.</div>
-            </div>
+        <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+            <label for="{{ form.username.id_for_label }}">Логин</label>
+            {{ form.username }}
+            {% for err in form.username.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
 
-            <button type="submit" class="btn-submit">Создать аккаунт</button>
-        </form>
+        <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% for err in form.email.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
 
-        <p class="form-footer-link">
-            Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
-        </p>
-    </div>
+        <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+            <label for="{{ form.first_name.id_for_label }}">Отображаемое имя</label>
+            {{ form.first_name }}
+            {% for err in form.first_name.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+
+        <div class="form-group {% if form.avatar.errors %}has-error{% endif %}">
+            <label for="{{ form.avatar.id_for_label }}">Аватар (необязательно)</label>
+            {{ form.avatar }}
+            {% for err in form.avatar.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+
+        <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            {% for err in form.password.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+            <div class="form-text">Минимум 8 символов, не только цифры.</div>
+        </div>
+
+        <div class="form-group {% if form.password_confirm.errors %}has-error{% endif %}">
+            <label for="{{ form.password_confirm.id_for_label }}">Повторите пароль</label>
+            {{ form.password_confirm }}
+            {% for err in form.password_confirm.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+
+        <button type="submit" class="btn-submit">Создать аккаунт</button>
+    </form>
+
+    <p class="form-footer-link">
+        Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+    </p>
+</div>
 {% endblock %}

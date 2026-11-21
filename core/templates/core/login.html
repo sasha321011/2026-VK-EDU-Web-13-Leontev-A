@@ -6,29 +6,36 @@
 {% endblock %}
 
 {% block content %}
-    <div class="form-wrapper">
-        <h1 class="form-title">Вход</h1>
+<div class="form-wrapper">
+    <h1 class="form-title">Вход</h1>
 
+    {% if form.non_field_errors %}
         <div class="form-alert">
-            Вы ввели неправильный email или пароль.
+            {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+        </div>
+    {% endif %}
+
+    <form class="form-card" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+
+        <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+            <label for="{{ form.username.id_for_label }}">Логин</label>
+            {{ form.username }}
+            {% for err in form.username.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
         </div>
 
-        <form class="form-card">
-            <div class="form-group">
-                <label for="login-email">Email</label>
-                <input type="email" id="login-email" class="form-input" placeholder="you@example.com">
-            </div>
+        <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            {% for err in form.password.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
 
-            <div class="form-group">
-                <label for="login-password">Пароль</label>
-                <input type="password" id="login-password" class="form-input" placeholder="Введите пароль">
-            </div>
+        <button type="submit" class="btn-submit">Войти</button>
+    </form>
 
-            <button type="submit" class="btn-submit">Войти</button>
-        </form>
-
-        <p class="form-footer-link">
-            Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a>
-        </p>
-    </div>
+    <p class="form-footer-link">
+        Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a>
+    </p>
+</div>
 {% endblock %}
