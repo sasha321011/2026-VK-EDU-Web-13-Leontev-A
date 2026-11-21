@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMe - вход</title>
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/forms.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <a href="index.html">AskMe</a>
+        </div>
+
+        <div class="search">
+            <form class="search-form">
+                <input type="search" class="search-input" placeholder="Поиск...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+        <div class="user-block">
+            <a href="login.html">Войти</a>
+            <a href="signup.html">Регистрация</a>
+        </div>
+
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="row">
+
+                <div class="content">
+                    <div class="form-wrapper">
+
+                        <h1 class="form-title">Вход</h1>
+
+                        <div class="form-alert">
+                            Вы ввели неправильный email или пароль.
+                        </div>
+
+                        <form class="form-card">
+
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" class="form-input"
+                                       placeholder="you@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login-password">Пароль</label>
+                                <input type="password" id="login-password" class="form-input"
+                                       placeholder="Введите пароль">
+                            </div>
+
+                            <button type="submit" class="btn-submit">Войти</button>
+
+                        </form>
+
+                        <p class="form-footer-link">
+                            Нет аккаунта? <a href="signup.html">Зарегистрироваться</a>
+                        </p>
+
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+
+                    <div class="widget">
+                        <h2 class="widget-title">Популярные теги</h2>
+                        <div class="tags">
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">html</a>
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">javascript</a>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h2 class="widget-title">Лучшие пользователи</h2>
+                        <ul class="members">
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Иван Иванов</a>
+                            </li>
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Мария Петрова</a>
+                            </li>
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Петр Сидоров</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 AskMe. Учебный проект VK Education.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

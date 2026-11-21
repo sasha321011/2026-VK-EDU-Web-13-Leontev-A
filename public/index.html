@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AskMe - главная</title>
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="logo">
+            <a href="index.html">AskMe</a>
+        </div>
+
+        <div class="search">
+            <form class="search-form">
+                <input type="search" class="search-input" placeholder="Поиск...">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
+
+        <div class="user-block">
+            <a href="login.html">Войти</a>
+            <a href="signup.html">Регистрация</a>
+        </div>
+
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="row">
+
+                <div class="content">
+
+                    <div class="content-question">
+                        <div class="content-question-side">
+                            <img src="static/img/avatar.png" alt="avatar" class="content-question-avatar">
+                            <div class="vote">
+                                <button type="button" class="vote-btn vote-up">▲</button>
+                                <span class="vote-count">12</span>
+                                <button type="button" class="vote-btn vote-down">▼</button>
+                            </div>
+                        </div>
+                        <div class="content-question-right">
+                            <div class="content-question-body">
+                                <a href="question.html" class="question-title">Как работает Django ORM?</a>
+                                <p>Не понимаю, как строить сложные запросы с filter и exclude...</p>
+                            </div>
+                            <div class="content-question-footer">
+                                <a href="question.html" class="answers-count">Ответы: 5</a>
+                                <div class="question-tags">
+                                    <a href="#" class="tag">django</a>
+                                    <a href="#" class="tag">python</a>
+                                </div>
+                                <span class="question-time">2 часа назад</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-question">
+                        <div class="content-question-side">
+                            <img src="static/img/avatar.png" alt="avatar" class="content-question-avatar">
+                            <div class="vote">
+                                <button type="button" class="vote-btn vote-up">▲</button>
+                                <span class="vote-count">12</span>
+                                <button type="button" class="vote-btn vote-down">▼</button>
+                            </div>
+                        </div>
+                        <div class="content-question-right">
+                            <div class="content-question-body">
+                                <a href="question.html" class="question-title">Как работает Django ORM?</a>
+                                <p>Не понимаю, как строить сложные запросы с filter и exclude...</p>
+                            </div>
+                            <div class="content-question-footer">
+                                <a href="question.html" class="answers-count">Ответы: 5</a>
+                                <div class="question-tags">
+                                    <a href="#" class="tag">django</a>
+                                    <a href="#" class="tag">python</a>
+                                </div>
+                                <span class="question-time">2 часа назад</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-question">
+                        <div class="content-question-side">
+                            <img src="static/img/avatar.png" alt="avatar" class="content-question-avatar">
+                            <div class="vote">
+                                <button type="button" class="vote-btn vote-up">▲</button>
+                                <span class="vote-count">12</span>
+                                <button type="button" class="vote-btn vote-down">▼</button>
+                            </div>
+                        </div>
+                        <div class="content-question-right">
+                            <div class="content-question-body">
+                                <a href="question.html" class="question-title">Как работает Django ORM?</a>
+                                <p>Не понимаю, как строить сложные запросы с filter и exclude...</p>
+                            </div>
+                            <div class="content-question-footer">
+                                <a href="question.html" class="answers-count">Ответы: 5</a>
+                                <div class="question-tags">
+                                    <a href="#" class="tag">django</a>
+                                    <a href="#" class="tag">python</a>
+                                </div>
+                                <span class="question-time">2 часа назад</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="pagination">
+                        <a href="#" class="page-link disabled">Назад</a>
+                        <a href="#" class="page-link active">1</a>
+                        <a href="#" class="page-link">2</a>
+                        <a href="#" class="page-link">3</a>
+                        <a href="#" class="page-link">Вперёд</a>
+                    </nav>
+
+                </div>
+
+                <aside class="sidebar">
+
+                    <div class="widget">
+                        <h2 class="widget-title">Популярные теги</h2>
+                        <div class="tags">
+                            <a href="#" class="tag">python</a>
+                            <a href="#" class="tag">django</a>
+                            <a href="#" class="tag">html</a>
+                            <a href="#" class="tag">css</a>
+                            <a href="#" class="tag">javascript</a>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h2 class="widget-title">Лучшие пользователи</h2>
+                        <ul class="members">
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Иван Иванов</a>
+                            </li>
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Мария Петрова</a>
+                            </li>
+                            <li class="member">
+                                <img src="static/img/avatar.png" alt="avatar" class="member-avatar">
+                                <a href="profile.html">Петр Сидоров</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 AskMe. Учебный проект VK Education.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

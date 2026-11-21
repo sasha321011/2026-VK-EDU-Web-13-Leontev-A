@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'questions/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'questions/css/question.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="content-question">
+    <div class="content-question-side">
+        <img src="{% if question.author.profile.avatar %}{{ question.author.profile.avatar.url }}{% else %}{% static 'core/img/avatar.png' %}{% endif %}" alt="avatar" class="content-question-avatar">
+        
+        <div class="vote" data-question-id="{{ question.id }}">
+            <button type="button" class="vote-btn vote-up" {% if not user.is_authenticated %}disabled title="Войдите, чтобы голосовать"{% endif %}>▲</button>
+            <span class="vote-count">{{ question.rating|default:0 }}</span>
+            <button type="button" class="vote-btn vote-down" {% if not user.is_authenticated %}disabled title="Войдите, чтобы голосовать"{% endif %}>▼</button>
+        </div>
+    </div>
+    
+    <div class="content-question-right">
+        <div class="content-question-body">
+            <h1 class="question-title">{{ question.title }}</h1>
+            <p>{{ question.text }}</p>
+        </div>
+        
+        <div class="content-question-footer">
+            <span class="answers-count">Ответы: {{ page.paginator.count }}</span>
+            
+            <div class="question-tags">
+                {% for tag in question.tags.all %}
+                    <a href="{% url 'tag' tag.name %}" class="tag">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+            
+            <span class="question-time">{{ question.created_at|date:"d M Y H:i" }}</span>
+        </div>
+    </div>
+</div>
+
+<h2>Ответы ({{ page.paginator.count }})</h2>
+
+{% for answer in answers %}
+
+<div class="content-question {% if answer.is_correct %}answer-correct{% endif %}" id="answer-{{ answer.id }}">
+    <div class="content-question-side">
+        <img src="{% if answer.author.profile.avatar %}{{ answer.author.profile.avatar.url }}{% else %}{% static 'core/img/avatar.png' %}{% endif %}" alt="avatar" class="content-question-avatar">
+        
+        <div class="vote" data-answer-id="{{ answer.id }}">
+            <button type="button" class="vote-btn vote-up" {% if not user.is_authenticated %}disabled title="Войдите, чтобы голосовать"{% endif %}>▲</button>
+            <span class="vote-count">{{ answer.rating|default:0 }}</span>
+            <button type="button" class="vote-btn vote-down" {% if not user.is_authenticated %}disabled title="Войдите, чтобы голосовать"{% endif %}>▼</button>
+
+            {% if user == question.author %}
+                <button type="button" class="correct-btn {% if answer.is_correct %}active{% endif %}" data-answer-id="{{ answer.id }}" title="Отметить как правильный">✓</button>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="content-question-right">
+        <div class="content-question-body">
+            <p>{{ answer.text }}</p>
+        </div>
+        <div class="content-question-footer">
+            <span>{{ answer.author.username }}</span>
+            <span class="question-time">{{ answer.created_at|date:"d M Y H:i" }}</span>
+            {% if answer.is_correct %}
+                <span class="badge" style="color: green; font-weight: bold;">Правильный</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% empty %}
+<p>Пока нет ни одного ответа к этому вопросу.</p>
+{% endfor %}
+
+{% include 'questions/includes/pagination.html' %}
+
+{% if user.is_authenticated %}
+<div class="form-wrapper" style="margin-top: 30px;">
+    <h3>Ваш ответ</h3>
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        <div class="form-group {% if form.text.errors %}has-error{% endif %}">
+            {{ form.text }}
+            {% for err in form.text.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+        <button type="submit" class="btn-submit">Отправить</button>
+    </form>
+</div>
+{% else %}
+<p style="margin-top: 20px;"><a href="{% url 'login' %}?next={{ request.path }}">Войдите</a>, чтобы ответить.</p>
+{% endif %}
+
+{% endblock %}

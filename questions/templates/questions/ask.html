@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+    <h1 class="form-title">Задать вопрос</h1>
+
+    {% if form.non_field_errors %}
+        <div class="form-alert">
+            {% for err in form.non_field_errors %}{{ err }}{% endfor %}
+        </div>
+    {% endif %}
+
+    <form class="form-card" method="post">
+        {% csrf_token %}
+
+        <div class="form-group {% if form.title.errors %}has-error{% endif %}">
+            <label for="{{ form.title.id_for_label }}">Заголовок</label>
+            {{ form.title }}
+            {% for err in form.title.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+            <div class="form-text">Кратко сформулируйте вопрос.</div>
+        </div>
+
+        <div class="form-group {% if form.text.errors %}has-error{% endif %}">
+            <label for="{{ form.text.id_for_label }}">Текст вопроса</label>
+            {{ form.text }}
+            {% for err in form.text.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+            <div class="form-text">Опишите подробно.</div>
+        </div>
+
+        <div class="form-group {% if form.tags.errors %}has-error{% endif %}">
+            <label for="{{ form.tags.id_for_label }}">Теги</label>
+            {{ form.tags }}
+            {% for err in form.tags.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+            <div class="form-text">Через запятую, не более 5 тегов.</div>
+        </div>
+
+        <button type="submit" class="btn-submit">Опубликовать</button>
+    </form>
+</div>
+{% endblock %}
